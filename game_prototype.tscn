@@ -38,6 +38,7 @@ offset_top = -321.0
 offset_right = 576.0
 offset_bottom = 327.0
 script = ExtResource("1_v2kb0")
+turns_left = null
 
 [node name="Money" type="RichTextLabel" parent="Scene Root"]
 layout_mode = 1
@@ -125,12 +126,42 @@ text = "Properties:
 "
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Scene Root/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 146.39)
 layout_mode = 2
 text = "Alive:
 Infected:
 Dead:
-Revenue:"
+Revenue:
+Immune:
+Change:"
+
+[node name="NextTurnButtonPanle" type="Panel" parent="Scene Root"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Next" type="Button" parent="Scene Root/NextTurnButtonPanle"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_top = -36.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next Turn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-1, -42)
+
+[connection signal="button_up" from="Scene Root/NextTurnButtonPanle/Next" to="Scene Root" method="_on_next_button_up"]
