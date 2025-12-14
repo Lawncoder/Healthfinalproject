@@ -1,0 +1,136 @@
+[gd_scene load_steps=8 format=3 uid="uid://cb2flv54dewjl"]
+
+[ext_resource type="Script" path="res://GameManager.gd" id="1_v2kb0"]
+
+[sub_resource type="Gradient" id="Gradient_k3ebn"]
+colors = PackedColorArray(0.117647, 0.243137, 0.0901961, 1, 0, 0.647059, 0.121569, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3nmpg"]
+gradient = SubResource("Gradient_k3ebn")
+fill_from = Vector2(0.449541, 0.986239)
+fill_to = Vector2(0.761468, 0.0642202)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n7666"]
+
+[sub_resource type="Gradient" id="Gradient_l020q"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.00819672, 1)
+colors = PackedColorArray(0.3569, 0.028595, 0.501463, 1, 0.975811, 0.373202, 0.629489, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6pdin"]
+gradient = SubResource("Gradient_l020q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bie8b"]
+texture = SubResource("GradientTexture1D_6pdin")
+
+[node name="Game Prototype" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.49999, 1.00001)
+scale = Vector2(18.0156, 10.125)
+texture = SubResource("GradientTexture2D_3nmpg")
+
+[node name="Scene Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -574.0
+offset_top = -321.0
+offset_right = 576.0
+offset_bottom = 327.0
+script = ExtResource("1_v2kb0")
+
+[node name="Money" type="RichTextLabel" parent="Scene Root"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 10.0
+offset_right = -22.0
+offset_bottom = 50.0
+grow_horizontal = 0
+text = "Money: 0"
+text_direction = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene Root"]
+layout_mode = 1
+offset_right = 303.0
+offset_bottom = 110.0
+
+[node name="PopularityLabel" type="RichTextLabel" parent="Scene Root/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "Popularity"
+
+[node name="Popularity" type="ProgressBar" parent="Scene Root/VBoxContainer"]
+modulate = Color(0.886275, 0.137255, 1, 1)
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_n7666")
+theme_override_styles/fill = SubResource("StyleBoxTexture_bie8b")
+value = 100.0
+show_percentage = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Scene Root"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -214.0
+offset_bottom = 211.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Scene Root"]
+layout_mode = 0
+offset_right = 86.0
+offset_bottom = 65.0
+scale = Vector2(0.6, 0.6)
+columns = 6
+
+[node name="Panel" type="Panel" parent="Scene Root"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -149.0
+offset_bottom = 199.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene Root/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -164.5
+offset_right = 74.0
+offset_bottom = 164.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Scene Root/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 23.95)
+layout_mode = 2
+text = "Properties:
+"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Scene Root/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Alive:
+Infected:
+Dead:
+Revenue:"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, -42)
