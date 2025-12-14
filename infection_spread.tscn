@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://clxrbb8h4fhif"]
+
+[ext_resource type="Script" path="res://infection_spread.gd" id="1_xshrj"]
+
+[node name="InfectionSpread" type="Line2D"]
+default_color = Color(0.694118, 0.0313726, 0.180392, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("1_xshrj")

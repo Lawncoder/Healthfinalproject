@@ -38,7 +38,6 @@ offset_top = -321.0
 offset_right = 576.0
 offset_bottom = 327.0
 script = ExtResource("1_v2kb0")
-turns_left = null
 
 [node name="Money" type="RichTextLabel" parent="Scene Root"]
 layout_mode = 1
@@ -142,26 +141,75 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -98.0
-offset_top = -40.0
+offset_left = -117.0
+offset_top = -66.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Next" type="Button" parent="Scene Root/NextTurnButtonPanle"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene Root/NextTurnButtonPanle"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -91.0
-offset_top = -36.0
-offset_right = -5.0
-offset_bottom = -5.0
+offset_left = -96.0
+offset_top = -58.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="Next" type="Button" parent="Scene Root/NextTurnButtonPanle/VBoxContainer"]
+layout_mode = 2
 text = "Next Turn"
+
+[node name="NextTurnProgressBar" type="ProgressBar" parent="Scene Root/NextTurnButtonPanle/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15.52)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="NextTurnCooldownTimer" type="Timer" parent="Scene Root"]
+wait_time = 0.75
+one_shot = true
+
+[node name="Panel2" type="Panel" parent="Scene Root"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -40.0
+offset_right = 60.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TurnsLeftLabel" type="RichTextLabel" parent="Scene Root/Panel2"]
+custom_minimum_size = Vector2(114.19, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Turns Left: 20"
+
+[node name="Totals" type="Button" parent="Scene Root"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Totals"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[connection signal="button_up" from="Scene Root/NextTurnButtonPanle/Next" to="Scene Root" method="_on_next_button_up"]
+[connection signal="button_up" from="Scene Root/NextTurnButtonPanle/VBoxContainer/Next" to="Scene Root" method="_on_next_button_up"]
+[connection signal="timeout" from="Scene Root/NextTurnCooldownTimer" to="Scene Root" method="_on_next_turn_cooldown_timer_timeout"]
+[connection signal="button_up" from="Scene Root/Totals" to="Scene Root" method="_on_totals_button_up"]
