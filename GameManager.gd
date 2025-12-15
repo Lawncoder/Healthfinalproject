@@ -10,6 +10,7 @@ const ICON = preload("res://icon.svg")
 @onready var next_turn_progress_bar: ProgressBar = $NextTurnButtonPanle/VBoxContainer/NextTurnProgressBar
 const INFECTION_SPREAD = preload("res://infection_spread.tscn")
 @onready var turns_left_label: RichTextLabel = $Panel2/TurnsLeftLabel
+@onready var totals_button: Button = $Totals
 
 #endregion
 
@@ -95,6 +96,9 @@ func _process(delta: float) -> void:
 	
 func set_grid_pos():
 	grid_container.position = (self.size - grid_container.size*grid_container.scale.x)/2;
+	totals_button.position.x = grid_container.position.x;
+
+	
 		
 
 func update_inspector():
