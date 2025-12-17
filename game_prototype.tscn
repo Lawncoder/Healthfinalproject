@@ -1,27 +1,50 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb2flv54dewjl"]
+[gd_scene load_steps=21 format=3 uid="uid://cb2flv54dewjl"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_v2kb0"]
+[ext_resource type="Texture2D" uid="uid://dcnponfv2ip4a" path="res://ninepatchrects.webp" id="2_ay12y"]
+[ext_resource type="PackedScene" uid="uid://d425ef45mv5a" path="res://popup_panel.tscn" id="2_q8l0y"]
+[ext_resource type="Script" path="res://policy_popup.gd" id="3_707h3"]
+[ext_resource type="FontFile" uid="uid://dme6ayikgtffw" path="res://GamePlayedOutline-wrX8.ttf" id="3_g3ami"]
+[ext_resource type="Texture2D" uid="uid://27jlcngpnivo" path="res://iconset/buildingicons/Hospital.png" id="4_plsjv"]
+[ext_resource type="FontFile" uid="uid://lxlvu5v1m0rd" path="res://QuantifierNbp-2d6X.ttf" id="4_x6w0g"]
+[ext_resource type="Texture2D" uid="uid://bi0xcuir4b7su" path="res://iconset/buildingicons/Ambulance.png" id="5_ar2tr"]
+[ext_resource type="Texture2D" uid="uid://dy6fg3m0ks23h" path="res://iconset/buildingicons/Clinic.png" id="6_6c5n7"]
+[ext_resource type="Texture2D" uid="uid://b6yny8pf1amjw" path="res://iconset/buildingicons/Ads.png" id="7_sso4m"]
 
 [sub_resource type="Gradient" id="Gradient_k3ebn"]
-colors = PackedColorArray(0.117647, 0.243137, 0.0901961, 1, 0, 0.647059, 0.121569, 1)
+colors = PackedColorArray(0.128827, 0.208118, 0.33218, 1, 0.719081, 0.357151, 0.802595, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3nmpg"]
 gradient = SubResource("Gradient_k3ebn")
 fill_from = Vector2(0.449541, 0.986239)
 fill_to = Vector2(0.761468, 0.0642202)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n7666"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsktl"]
+atlas = ExtResource("2_ay12y")
+region = Rect2(0, 665, 133, 133)
 
-[sub_resource type="Gradient" id="Gradient_l020q"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.00819672, 1)
-colors = PackedColorArray(0.3569, 0.028595, 0.501463, 1, 0.975811, 0.373202, 0.629489, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kkij"]
+bg_color = Color(0.215902, 0.215902, 0.215902, 0.717647)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6pdin"]
-gradient = SubResource("Gradient_l020q")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrn31"]
+bg_color = Color(0.133333, 0.6, 0.6, 1)
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0.552941)
+shadow_size = 8
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bie8b"]
-texture = SubResource("GradientTexture1D_6pdin")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8d0ra"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_658fk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ft8fq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o0txh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jlp5r"]
+font = ExtResource("3_g3ami")
+font_size = 48
+outline_size = 19
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Game Prototype" type="Node2D"]
 
@@ -39,38 +62,6 @@ offset_right = 576.0
 offset_bottom = 327.0
 script = ExtResource("1_v2kb0")
 
-[node name="Money" type="RichTextLabel" parent="Scene Root"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -170.0
-offset_top = 10.0
-offset_right = -22.0
-offset_bottom = 50.0
-grow_horizontal = 0
-text = "Money: 0"
-text_direction = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Scene Root"]
-layout_mode = 1
-offset_right = 303.0
-offset_bottom = 110.0
-
-[node name="PopularityLabel" type="RichTextLabel" parent="Scene Root/VBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-text = "Popularity"
-
-[node name="Popularity" type="ProgressBar" parent="Scene Root/VBoxContainer"]
-modulate = Color(0.886275, 0.137255, 1, 1)
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxEmpty_n7666")
-theme_override_styles/fill = SubResource("StyleBoxTexture_bie8b")
-value = 100.0
-show_percentage = false
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="Scene Root"]
 layout_mode = 1
 anchors_preset = 6
@@ -84,11 +75,39 @@ offset_bottom = 211.0
 grow_horizontal = 0
 grow_vertical = 2
 
+[node name="Cities" type="NinePatchRect" parent="Scene Root"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -193.0
+offset_right = 281.0
+offset_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_gsktl")
+region_rect = Rect2(3, -1, 129, 129)
+patch_margin_left = 34
+patch_margin_top = 35
+patch_margin_right = 32
+patch_margin_bottom = 34
+
 [node name="GridContainer" type="GridContainer" parent="Scene Root"]
-layout_mode = 0
-offset_right = 86.0
-offset_bottom = 65.0
-scale = Vector2(0.6, 0.6)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 314.5
+offset_top = -196.0
+offset_right = 1102.5
+offset_bottom = 196.0
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme_override_constants/h_separation = 80
+theme_override_constants/v_separation = 80
 columns = 6
 
 [node name="Panel" type="Panel" parent="Scene Root"]
@@ -119,14 +138,18 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Scene Root/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 23.95)
+custom_minimum_size = Vector2(0, 32.215)
 layout_mode = 2
-text = "Properties:
+theme_override_fonts/normal_font = ExtResource("3_g3ami")
+theme_override_font_sizes/normal_font_size = 21
+text = "Properties
 "
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Scene Root/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 146.39)
+[node name="RichTextLabel2" type="Label" parent="Scene Root/Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("4_x6w0g")
+theme_override_font_sizes/font_size = 30
 text = "Alive:
 Infected:
 Dead:
@@ -160,6 +183,7 @@ grow_vertical = 0
 
 [node name="Next" type="Button" parent="Scene Root/NextTurnButtonPanle/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_g3ami")
 text = "Next Turn"
 
 [node name="NextTurnProgressBar" type="ProgressBar" parent="Scene Root/NextTurnButtonPanle/VBoxContainer"]
@@ -179,37 +203,343 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -60.0
-offset_top = -40.0
-offset_right = 60.0
+offset_left = -81.5
+offset_top = -63.0
+offset_right = 81.5
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="TurnsLeftLabel" type="RichTextLabel" parent="Scene Root/Panel2"]
 custom_minimum_size = Vector2(114.19, 0)
 layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -69.5
+offset_top = -51.0
+offset_right = 69.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_x6w0g")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]Turns Left: 20"
+
+[node name="Totals" type="Button" parent="Scene Root"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.5
+offset_right = 27.5
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "Totals"
+
+[node name="PolicyPopup" type="Panel" parent="Scene Root"]
+visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -577.5
+offset_top = -326.0
+offset_right = 577.5
+offset_bottom = 326.0
 grow_horizontal = 2
 grow_vertical = 2
-bbcode_enabled = true
-text = "[center]Turns Left: 20"
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kkij")
+script = ExtResource("3_707h3")
 
-[node name="Totals" type="Button" parent="Scene Root"]
+[node name="Panel" type="Panel" parent="Scene Root/PolicyPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.5
+offset_top = -241.0
+offset_right = 271.5
+offset_bottom = 269.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrn31")
+
+[node name="Button" type="Button" parent="Scene Root/PolicyPopup/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Next"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene Root/PolicyPopup/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.5
+offset_top = -214.0
+offset_right = 265.5
+offset_bottom = 242.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsPanel" type="Panel" parent="Scene Root"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -218.0
+offset_right = 266.0
+offset_bottom = 210.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene Root/OptionsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -182.0
+offset_right = 114.5
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 19
+alignment = 1
+
+[node name="Action" type="Panel" parent="Scene Root/OptionsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(229.02, 80.835)
+layout_mode = 2
+
+[node name="Hospital" type="Button" parent="Scene Root/OptionsPanel/VBoxContainer/Action"]
+material = SubResource("ShaderMaterial_8d0ra")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 6.5
+offset_top = -28.4175
+offset_right = 312.5
+offset_bottom = 253.583
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("4_plsjv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene Root/OptionsPanel/VBoxContainer/Action"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -38.5
+offset_right = -2.0
+offset_bottom = 38.5
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="Name" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action/VBoxContainer"]
+layout_mode = 2
+text = "Hospital"
+
+[node name="Time" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action/VBoxContainer"]
+layout_mode = 2
+text = "Build Time: 2 Turns"
+
+[node name="Cose" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action/VBoxContainer"]
+layout_mode = 2
+text = "Cost: 20K
+"
+
+[node name="Action2" type="Panel" parent="Scene Root/OptionsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(229.02, 80.835)
+layout_mode = 2
+
+[node name="Ambulance" type="Button" parent="Scene Root/OptionsPanel/VBoxContainer/Action2"]
+material = SubResource("ShaderMaterial_658fk")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.5
+offset_top = -29.4175
+offset_right = 315.5
+offset_bottom = 271.582
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("5_ar2tr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene Root/OptionsPanel/VBoxContainer/Action2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -38.5
+offset_right = -2.0
+offset_bottom = 38.5
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="Name" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action2/VBoxContainer"]
+layout_mode = 2
+text = "Ambulance"
+
+[node name="Time" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action2/VBoxContainer"]
+layout_mode = 2
+text = "Build Time: 1 Turn"
+
+[node name="Cose" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action2/VBoxContainer"]
+layout_mode = 2
+text = "Cost: 12K"
+
+[node name="Action3" type="Panel" parent="Scene Root/OptionsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(229.02, 80.835)
+layout_mode = 2
+
+[node name="Clinic" type="Button" parent="Scene Root/OptionsPanel/VBoxContainer/Action3"]
+material = SubResource("ShaderMaterial_ft8fq")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.5
+offset_top = -30.4175
+offset_right = 317.5
+offset_bottom = 270.582
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("6_6c5n7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene Root/OptionsPanel/VBoxContainer/Action3"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -38.5
+offset_right = -2.0
+offset_bottom = 38.5
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="Name" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action3/VBoxContainer"]
+layout_mode = 2
+text = "Mobile Clinic
+"
+clip_text = true
+
+[node name="Time" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action3/VBoxContainer"]
+layout_mode = 2
+text = "Build Time: 1 turns"
+
+[node name="Cose" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action3/VBoxContainer"]
+layout_mode = 2
+text = "Cost: 7000"
+
+[node name="Action4" type="Panel" parent="Scene Root/OptionsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(229.02, 80.835)
+layout_mode = 2
+
+[node name="Ads" type="Button" parent="Scene Root/OptionsPanel/VBoxContainer/Action4"]
+material = SubResource("ShaderMaterial_o0txh")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.5
+offset_top = -31.4175
+offset_right = 219.5
+offset_bottom = 182.583
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+icon = ExtResource("7_sso4m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scene Root/OptionsPanel/VBoxContainer/Action4"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -38.5
+offset_right = -2.0
+offset_bottom = 38.5
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="Name" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action4/VBoxContainer"]
+layout_mode = 2
+text = "Inform Public"
+
+[node name="Time" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action4/VBoxContainer"]
+layout_mode = 2
+text = "Duration: 2 turns"
+
+[node name="Cose" type="Label" parent="Scene Root/OptionsPanel/VBoxContainer/Action4/VBoxContainer"]
+layout_mode = 2
+text = "Cost: 4000
+"
+
+[node name="Money" type="Label" parent="Scene Root"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -106.5
+offset_right = 106.5
+offset_bottom = 67.0
+grow_horizontal = 2
+text = "Money: X"
+label_settings = SubResource("LabelSettings_jlp5r")
+horizontal_alignment = 1
+
+[node name="PopupPanel" parent="Scene Root" instance=ExtResource("2_q8l0y")]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Totals"
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1155.0
+offset_bottom = 652.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="button_up" from="Scene Root/NextTurnButtonPanle/VBoxContainer/Next" to="Scene Root" method="_on_next_button_up"]
 [connection signal="timeout" from="Scene Root/NextTurnCooldownTimer" to="Scene Root" method="_on_next_turn_cooldown_timer_timeout"]
 [connection signal="button_up" from="Scene Root/Totals" to="Scene Root" method="_on_totals_button_up"]
+[connection signal="policies_picked" from="Scene Root/PolicyPopup" to="Scene Root" method="_on_policy_popup_policies_picked"]
+[connection signal="button_up" from="Scene Root/PolicyPopup/Panel/Button" to="Scene Root/PolicyPopup" method="_on_button_button_up"]
+[connection signal="button_up" from="Scene Root/OptionsPanel/VBoxContainer/Action/Hospital" to="Scene Root" method="_on_hospital_button_up"]
+[connection signal="button_up" from="Scene Root/OptionsPanel/VBoxContainer/Action2/Ambulance" to="Scene Root" method="_on_ambulance_button_up"]
+[connection signal="button_up" from="Scene Root/OptionsPanel/VBoxContainer/Action3/Clinic" to="Scene Root" method="_on_clinic_button_up"]
+[connection signal="button_up" from="Scene Root/OptionsPanel/VBoxContainer/Action4/Ads" to="Scene Root" method="_on_ads_button_up"]
+[connection signal="closed" from="Scene Root/PopupPanel" to="Scene Root" method="_on_popup_panel_closed"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7i2c5h5p2t8p"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_5q3ei"]
+[ext_resource type="FontFile" uid="uid://dme6ayikgtffw" path="res://GamePlayedOutline-wrX8.ttf" id="2_s8pwg"]
+
+[sub_resource type="Gradient" id="Gradient_ae7ag"]
+interpolation_mode = 2
+colors = PackedColorArray(0.463818, 0.487014, 0.567778, 1, 0.188041, 0.207675, 0.229971, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kl81g"]
+gradient = SubResource("Gradient_ae7ag")
+fill_from = Vector2(0.333333, 0.0683761)
+fill_to = Vector2(0.777778, 0.773504)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rlkso"]
+font = ExtResource("2_s8pwg")
+font_size = 60
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5q3ei")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_kl81g")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -231.0
+offset_right = 444.0
+offset_bottom = 211.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Pandemic Panic!"
+label_settings = SubResource("LabelSettings_rlkso")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_s8pwg")
+theme_override_font_sizes/font_size = 27
+text = "Start Game"
+
+[connection signal="button_down" from="Panel/VBoxContainer/Button" to="." method="_on_button_button_down"]

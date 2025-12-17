@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://durc7u21rpfuy"]
+
+[ext_resource type="Texture2D" uid="uid://bvj4mwt0kaysj" path="res://icon.svg" id="1_oobdb"]
+
+[node name="Action" type="Panel"]
+custom_minimum_size = Vector2(229.02, 80.835)
+offset_right = 227.0
+offset_bottom = 71.0
+metadata/_edit_vertical_guides_ = [-125.0]
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -35.5
+offset_right = 140.0
+offset_bottom = 100.5
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("1_oobdb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -38.5
+offset_right = -2.0
+offset_bottom = 38.5
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="Name" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Hospital"
+
+[node name="Time" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Build Time: 2 turns"
+
+[node name="Cose" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Cost: 300"

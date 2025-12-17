@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://d425ef45mv5a"]
+
+[ext_resource type="Script" path="res://popup_panel.gd" id="1_j7omb"]
+[ext_resource type="FontFile" uid="uid://dme6ayikgtffw" path="res://GamePlayedOutline-wrX8.ttf" id="2_froye"]
+[ext_resource type="FontFile" uid="uid://lxlvu5v1m0rd" path="res://QuantifierNbp-2d6X.ttf" id="3_0epy5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kkij"]
+bg_color = Color(0.215902, 0.215902, 0.215902, 0.717647)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrn31"]
+bg_color = Color(0.133333, 0.6, 0.6, 1)
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0.552941)
+shadow_size = 8
+
+[node name="PopupPanel" type="Panel"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -577.5
+offset_top = -326.0
+offset_right = 577.5
+offset_bottom = 326.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kkij")
+script = ExtResource("1_j7omb")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.5
+offset_top = -161.0
+offset_right = 271.5
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrn31")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Next"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(398.545, 50)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_froye")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "[center]This is a Heading"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 147.54)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("3_0epy5")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "	This is paragraph text"
+
+[connection signal="button_up" from="Panel/Button" to="." method="_on_button_button_up"]
